@@ -23,7 +23,7 @@ functools - part of standard distribution(s) of python
 
 ## How to Run
 Download all the files    
-make sure you have tkinter in your import path  
+make sure you have tkinter, or download/install it and make sure its in your import path  
 run main.py  
 
 

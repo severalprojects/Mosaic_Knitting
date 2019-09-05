@@ -17,7 +17,8 @@ Load a block from a file (folder of sample blocks included in the repo)
 ## Future updates:
 
 change the default block size to build bigger blocks  
-load multiple blocks into one pattern, to build more complex/varied tesselations.   
+load multiple blocks into one pattern, to build more complex/varied tesselations. 
+generate a printable file (PDF) of pattern. 
 
 ## Libraries required:
 tkinter - basic python UI library  

@@ -37,6 +37,8 @@ class Pattern(TK.Canvas):
         #print(self.myBlock.s)
 
         self.bind("<Button-1>", self.swapStitch) #connect mouse input to the canvas
+        self.bind("<ButtonRelease-1>", self.selectArea)
+        # self.bind("<Button-1>", self.mouseClicked)
         
         self.SCoords = blox.boxCoords(500, 500, cols, rows) #store the coordinates of the stitches 
                                                   
@@ -86,6 +88,9 @@ class Pattern(TK.Canvas):
     def makeEditable(self):
         self.canEdit = True
 
+    def makeSelectable(self):
+        self.canSelect = True    
+
     def updateTess(self, rowClicked, colClicked, blockRows, blockCols):
         for i in range(self.repeatH):
             for j in range(self.repeatV):
@@ -109,13 +114,56 @@ class Pattern(TK.Canvas):
                     self.myBlock.s = "".join(tempList) 
         self.pack()        
 
+    def mouseClicked(self, event):
+        print("mouse click: {}, {}".format(event.x, event.y))
+
+    def selectArea(self, event):
+        if self.canSelect:
+            self.endHL = [event.x, event.y]
+            self.drawHL(self.startHL, self.endHL)
+
+    def drawHL(self, startXY, endXY):
+        print("should draw highlight now from {} to {}".format(startXY, endXY))
+        
+        # SrowClicked = startXY[1]//math.floor((500/self.myBlock.r))
+        # ScolClicked = startXY[0]//math.floor((500/self.myBlock.c))
+        SrowClicked = math.floor(startXY[1]//(500/self.myBlock.r))
+        ScolClicked = math.floor(startXY[0]//(500/self.myBlock.c))
+        SstitchClicked = SrowClicked*(self.myBlock.c) + ScolClicked
+
+        # ErowClicked = endXY[1]//math.floor((500/self.myBlock.r))
+        # EcolClicked = endXY[0]//math.floor((500/self.myBlock.c))
+        ErowClicked = math.floor(endXY[1]//(500/self.myBlock.r))
+        EcolClicked = math.floor(endXY[0]//(500/self.myBlock.c))
+        EstitchClicked = ErowClicked*(self.myBlock.c) + EcolClicked
+
+        startpoint = self.SCoords[SstitchClicked]
+        endpoint = self.SCoords[EstitchClicked] #list is [UL(x, y), UR(x, y), LR(x, y), LL(x,y)]
+        # UL = startpoint[0], startpoint[1]
+        # UR = endpoint[4], startpoint[1]
+        # LR = endpoint[4], endpoint[5], 
+        # LL = startpoint[0], endpoint[5]
+        
+        self.create_polygon(startpoint[0], startpoint[1], endpoint[4], startpoint[1], endpoint[4], endpoint[5], startpoint[0], endpoint[5],  fill='', outline="red")
+        self.pack()
+
+        print("startstitch: {}  endstitch: {}".format(SstitchClicked, EstitchClicked))
+        return
+
+
+   
     def swapStitch(self, event):
+
+        # self.mouseClicked()
+
+        if self.canSelect:
+            self.startHL = [event.x, event.y]
         
 
             
         
-        rowClicked = event.y//math.floor((500/self.myBlock.r))
-        colClicked = event.x//math.floor((500/self.myBlock.c))
+        rowClicked = math.floor(event.y//(500/self.myBlock.r))
+        colClicked = math.floor(event.x//(500/self.myBlock.c))
         stitchClicked = rowClicked*(self.myBlock.c) + colClicked
         # print("boxes are {} pixels wide/tall".format(int((500/self.myBlock.r))))
         # print("clicked at {}, {}, which is row {}, col {}".format(event.x, event.y, rowClicked, colClicked))
@@ -264,7 +312,7 @@ class Pattern(TK.Canvas):
     def reset(self):
         self.delete("all")
         self.squares = []
-        print("reset")
+        # print("reset")
 
     def loadBlock(self, theString, rows, cols): #method to laod in a new block entirely
         self.reset()
@@ -272,7 +320,7 @@ class Pattern(TK.Canvas):
         self.myBlock.c = cols
         self.SCoords = blox.boxCoords(500, 500, cols, rows)
         self.myBlock = B.block(theString, rows, cols)   
-        print ("set my block")  
+        # print ("set my block")  
         self.squares = []   
         for i in range(rows*cols):
             

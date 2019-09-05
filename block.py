@@ -41,7 +41,7 @@ class block:
             #rowstring +="\n"    
             print(rowstring)
             
-        print("this is a test of printing method for a block")
+        # print("this is a test of printing method for a block")
 
     def bPrintUD(self): 
         
@@ -52,11 +52,11 @@ class block:
             #rowstring +="\n"    
             print(rowstring)
             
-        print("this is a test of printing method for a block")    
+        # print("this is a test of printing method for a block")    
     
     #this method will tile a block, returning a new block made from copies of the old one
     def bTile(self, hRepeat, vRepeat):
-        print("this is a function call to tile the block")
+        # print("this is a function call to tile the block")
         
         
         blockstring=""
@@ -225,12 +225,12 @@ class block:
         
         stitchPRow = len(theBlock[0])
         for row in range(numRows-1, -1, -1): 
-            print("checking row {} for bad lifts".format(row)) 
+            # print("checking row {} for bad lifts".format(row)) 
             rowBelow = (row+1)%self.r
         #start looking at each stitch a row:    
             for stitch in range(stitchPRow):
                 if row%2== 1: #checking a '0' row for bad '-' lifts
-                    print("row {} is a black row".format(row))
+                    # print("row {} is a black row".format(row))
                     if theBlock[row][stitch] == "-": #if it's a lift         
                         if theBlock[rowBelow][stitch] != "-":
                             bBLifts.append(row*self.c+stitch)
@@ -238,7 +238,7 @@ class block:
 
             for stitch in range(stitchPRow):
                 if row%2== 0: #checking a '-' row for bad '0' lifts
-                    print("row {} is a black row".format(row))
+                    # print("row {} is a black row".format(row))
                     if theBlock[row][stitch] == "0": #if it's a lift         
                         if theBlock[rowBelow][stitch] != "0":
                             bWLifts.append(row*self.c+stitch)
@@ -246,19 +246,20 @@ class block:
         #self.itemconfig(width = 300)
         #self.itemconfig(height = 300)
 
-        if not bBLifts and not bWLifts:
-            print("no bad lifts! congrats!")   
+        # if not bBLifts and not bWLifts:
+        #     print("no bad lifts! congrats!")  
+        #     continue  
 
-        if bBLifts:
-            print("bad black lifts here: {}".format(bBLifts)) 
-            # for stitch in bBLifts:
-            #     self.itemconfig(self.squares[stitch][0], outline="yellow", width="5")   
+        # if bBLifts:
+        #     print("bad black lifts here: {}".format(bBLifts)) 
+        #     # for stitch in bBLifts:
+        #     #     self.itemconfig(self.squares[stitch][0], outline="yellow", width="5")   
         
         
-        if bWLifts:
-            print("bad green lifts here: {}".format(bWLifts)) 
-            # for stitch in bWLifts:
-            #     self.itemconfig(self.squares[stitch][0], outline="white", width="5")  
+        # if bWLifts:
+        #     print("bad green lifts here: {}".format(bWLifts)) 
+        #     # for stitch in bWLifts:
+        #     #     self.itemconfig(self.squares[stitch][0], outline="white", width="5")  
 
         bLifts = [bBLifts, bWLifts]
         return bLifts     

@@ -90,6 +90,7 @@ myPattern.makeEditable()
 
 pattern2.pack(side="right")
 pattern2.noEdit()
+# pattern2.makeSelectable()
 
 myPattern.bTile(tessconstant, tessconstant)
 

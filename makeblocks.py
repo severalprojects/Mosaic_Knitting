@@ -30,12 +30,12 @@ def findBadLifts(string, rows, cols):
     
     stitchPRow = len(theBlock[0])
     for row in range(numRows-1, -1, -1): 
-        print("checking row {} for bad lifts".format(row)) 
+        # print("checking row {} for bad lifts".format(row)) 
         rowBelow = (row+1)%rows
     #start looking at each stitch a row:    
         for stitch in range(stitchPRow):
             if row%2== 1: #checking a '0' row for bad '-' lifts
-                print("row {} is a black row".format(row))
+                # print("row {} is a black row".format(row))
                 if theBlock[row][stitch] == "-": #if it's a lift         
                     if theBlock[rowBelow][stitch] != "-":
                         bBLifts.append(row*cols+stitch)
@@ -43,7 +43,7 @@ def findBadLifts(string, rows, cols):
 
         for stitch in range(stitchPRow):
             if row%2== 0: #checking a '-' row for bad '0' lifts
-                print("row {} is a black row".format(row))
+                # print("row {} is a black row".format(row))
                 if theBlock[row][stitch] == "0": #if it's a lift         
                     if theBlock[rowBelow][stitch] != "0":
                         bWLifts.append(row*cols+stitch)
@@ -54,16 +54,16 @@ def findBadLifts(string, rows, cols):
     if not bBLifts and not bWLifts:
         print("no bad lifts! congrats!")   
 
-    if bBLifts:
-        print("bad black lifts here: {}".format(bBLifts)) 
-        # for stitch in bBLifts:
-        #     self.itemconfig(self.squares[stitch][0], outline="yellow", width="5")   
+    # if bBLifts:
+    #     print("bad black lifts here: {}".format(bBLifts)) 
+    #     # for stitch in bBLifts:
+    #     #     self.itemconfig(self.squares[stitch][0], outline="yellow", width="5")   
     
     
-    if bWLifts:
-        print("bad green lifts here: {}".format(bWLifts)) 
-        # for stitch in bWLifts:
-        #     self.itemconfig(self.squares[stitch][0], outline="white", width="5")  
+    # if bWLifts:
+    #     print("bad green lifts here: {}".format(bWLifts)) 
+    #     # for stitch in bWLifts:
+    #     #     self.itemconfig(self.squares[stitch][0], outline="white", width="5")  
 
     for lift in bBLifts:
         bLifts.append(lift)
@@ -138,7 +138,7 @@ def randomVBlock(rows, cols, longestRun): #first make a random block that has no
                         run = 0
             theRow.append(newStitch)  
         theblock.insert(0, theRow)
-        print("row {} is this:{}".format(row, theRow))
+        # print("row {} is this:{}".format(row, theRow))
     
     blockString = (JS.TwoD2Str(theblock))
     badLifts = findBadLifts(blockString, rows, cols)

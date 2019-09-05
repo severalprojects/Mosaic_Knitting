@@ -1,6 +1,6 @@
 # Mosaic Knitting
 
-![I knit that](MK.jpg)
+![I knit that](mosaic.jpg)
 This is a program written in python to generate and edit mosaic knitting patterns. It is currently designed to build an 8 stitch by 8(16) row block, displayed as a tessalation in real time.
 
 Here's a decent link that explains [the mosaic knitting technique](https://www.interweave.com/article/knitting/tech-tip-mosaic-knitting/)

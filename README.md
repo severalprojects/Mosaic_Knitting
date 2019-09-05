@@ -1,11 +1,7 @@
 # Mosaic Knitting
-This is a program written in python to generate and edit mosaic knitting patterns. 
+This is a program written in python to generate and edit mosaic knitting patterns. It is currently designed to build an 8 stitch by 8(16) row block, displayed as a tessalation in real time.
 
-Currently designed to build an 8 stitch by 8(16) row block, displayed as a tessalation in real time. 
-
-## Libraries required:
-tkinter - basic python UI library
-functools - part of standard distribution(s) of python
+Here's a decent link that explains [the mosaic knitting technique](https://www.interweave.com/article/knitting/tech-tip-mosaic-knitting/)
 
 ## Features:
 
@@ -20,4 +16,9 @@ Load a block from a file
 
 change the default block size to build bigger blocks
 load multiple blocks into one pattern, to build more complex/varied tesselations. 
+
+## Libraries required:
+tkinter - basic python UI library
+functools - part of standard distribution(s) of python
+
 
